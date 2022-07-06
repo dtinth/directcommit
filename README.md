@@ -51,6 +51,6 @@ This Firebase app will be used to provide authentication layer to the frontend.
 ### Integrate with frontend
 
 1. Let user [log in using their GitHub account](https://firebase.google.com/docs/auth/web/github-auth).
-2. Obtain the ID token by calling the [`getIdToken` method](https://firebase.google.com/docs/reference/js/auth.user#usergetidtoken) on [the `auth.currentUser` object](https://firebase.google.com/docs/reference/js/auth.auth.md#authcurrentuser).
+2. Obtain the ID token by calling the [`getIdToken` method](https://firebase.google.com/docs/reference/js/auth.user#%75%73%65%72%67%65%74%69%64%74%6f%6b%65%6e) on [the `auth.currentUser` object](https://firebase.google.com/docs/reference/js/auth.auth.md#authcurrentuser).
 
 See [example](https://github.com/dtinth/directcommit-example/blob/main/public/index.html) ([see deployed](https://directcommit.firebaseapp.com/)).
