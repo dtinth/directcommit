@@ -24,6 +24,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dtinth/encrypted@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@dtinth/encrypted@npm:0.3.1"
+  dependencies:
+    "@types/node": "*"
+    dotenv: ^8.2.0
+    tweetnacl: ^1.0.3
+  bin:
+    encrypt-json: encrypt.js
+  checksum: 91895f1f06357543fbb5617b34883bca956c534be7320164a16ecadc9580b659ef8e96b02776045414c190f54aaa6426a9ae36d4bdc87fa4fd7fba385c722c51
+  languageName: node
+  linkType: hard
+
 "@eslint/eslintrc@npm:^1.3.0":
   version: 1.3.0
   resolution: "@eslint/eslintrc@npm:1.3.0"
@@ -193,9 +206,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/app@npm:^13.0.0":
-  version: 13.0.0
-  resolution: "@octokit/app@npm:13.0.0"
+"@octokit/app@npm:^12.0.4":
+  version: 12.0.7
+  resolution: "@octokit/app@npm:12.0.7"
   dependencies:
     "@octokit/auth-app": ^3.3.0
     "@octokit/auth-unauthenticated": ^2.0.4
@@ -203,8 +216,8 @@ __metadata:
     "@octokit/oauth-app": ^3.3.2
     "@octokit/plugin-paginate-rest": ^2.13.3
     "@octokit/types": ^6.27.1
-    "@octokit/webhooks": ^10.0.0
-  checksum: 92fe05224e203e604c1b676b7a6f89c1a06bee9b413114f66dd520a7801e2a985ee9997c87c6351fc49c92c205219a68db5e3c80d68073272ad37b374149d370
+    "@octokit/webhooks": ^9.0.1
+  checksum: a987e46d203193771ad5b170f37c00690d530794c37bee1e72269fb1cd3ebab6d103ef23556ac96b603a7b8dbcb3f451fee9d9f4f66e680f8b2671e3e5710e02
   languageName: node
   linkType: hard
 
@@ -286,7 +299,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/core@npm:^3.3.2, @octokit/core@npm:^3.4.0":
+"@octokit/core@npm:^3.3.2, @octokit/core@npm:^3.4.0, @octokit/core@npm:^3.5.1":
   version: 3.6.0
   resolution: "@octokit/core@npm:3.6.0"
   dependencies:
@@ -323,7 +336,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/oauth-app@npm:^3.3.2":
+"@octokit/oauth-app@npm:^3.3.2, @octokit/oauth-app@npm:^3.5.1":
   version: 3.7.0
   resolution: "@octokit/oauth-app@npm:3.7.0"
   dependencies:
@@ -371,7 +384,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/plugin-paginate-rest@npm:^2.13.3":
+"@octokit/plugin-paginate-rest@npm:^2.13.3, @octokit/plugin-paginate-rest@npm:^2.18.0":
   version: 2.21.1
   resolution: "@octokit/plugin-paginate-rest@npm:2.21.1"
   dependencies:
@@ -379,6 +392,40 @@ __metadata:
   peerDependencies:
     "@octokit/core": ">=2"
   checksum: 2941d0320ec6891cbb0248afe8f8ba019e2971704c6b975a01b99358c432ed84c2920f52d095fc912616e43a59ef582c1df6b868d59a39e2bf095476306ba6f1
+  languageName: node
+  linkType: hard
+
+"@octokit/plugin-rest-endpoint-methods@npm:^5.14.0":
+  version: 5.16.2
+  resolution: "@octokit/plugin-rest-endpoint-methods@npm:5.16.2"
+  dependencies:
+    "@octokit/types": ^6.39.0
+    deprecation: ^2.3.1
+  peerDependencies:
+    "@octokit/core": ">=3"
+  checksum: 30fcc50c335d1093f03573d9fa3a4b7d027fc98b215c43e07e82ee8dabfa0af0cf1b963feb542312ae32d897a2f68dc671577206f30850215517bebedc5a2c73
+  languageName: node
+  linkType: hard
+
+"@octokit/plugin-retry@npm:^3.0.9":
+  version: 3.0.9
+  resolution: "@octokit/plugin-retry@npm:3.0.9"
+  dependencies:
+    "@octokit/types": ^6.0.3
+    bottleneck: ^2.15.3
+  checksum: 5744780d308dd2f2b8174264604a9f8ea977374256f5eaf0314e5181c32f96ec53a3cfcee67bf1b48dc7eed401ebefebd2fa744b41cf03103affac92f397a874
+  languageName: node
+  linkType: hard
+
+"@octokit/plugin-throttling@npm:^3.5.1":
+  version: 3.7.0
+  resolution: "@octokit/plugin-throttling@npm:3.7.0"
+  dependencies:
+    "@octokit/types": ^6.0.1
+    bottleneck: ^2.15.3
+  peerDependencies:
+    "@octokit/core": ^3.5.0
+  checksum: a1c29094d060f1c221c2795b899cb86cd83dc71ea61c6e2a272aabed4f7856bfac2696f3e8f31beccc7c99bbe14d172d3175cd68ae939ae5ff1d01fadf8df00b
   languageName: node
   linkType: hard
 
@@ -407,7 +454,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/types@npm:^6.0.3, @octokit/types@npm:^6.10.0, @octokit/types@npm:^6.12.2, @octokit/types@npm:^6.16.1, @octokit/types@npm:^6.27.1, @octokit/types@npm:^6.38.2":
+"@octokit/types@npm:^6.0.1, @octokit/types@npm:^6.0.3, @octokit/types@npm:^6.10.0, @octokit/types@npm:^6.12.2, @octokit/types@npm:^6.16.1, @octokit/types@npm:^6.27.1, @octokit/types@npm:^6.35.0, @octokit/types@npm:^6.38.2, @octokit/types@npm:^6.39.0":
   version: 6.39.0
   resolution: "@octokit/types@npm:6.39.0"
   dependencies:
@@ -423,22 +470,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/webhooks-types@npm:6.2.0":
-  version: 6.2.0
-  resolution: "@octokit/webhooks-types@npm:6.2.0"
-  checksum: 46d12ae38d660e216a63b4a26339f379d51a807cb26377bd599f9d83c096ecdb2cf703de9dfb5375cdd37d7116797d4284c64a94a4d11f85045d9cf8c1fe5bb1
+"@octokit/webhooks-types@npm:5.8.0":
+  version: 5.8.0
+  resolution: "@octokit/webhooks-types@npm:5.8.0"
+  checksum: a5103ef5224e0fab201845fa23333f21415aebae7650f1b6ffe64c11377847139411a1a37fff5931aead13658b94b79ab0abbad24b9c30bfc4d2c9528ceb72d1
   languageName: node
   linkType: hard
 
-"@octokit/webhooks@npm:^10.0.0":
-  version: 10.0.3
-  resolution: "@octokit/webhooks@npm:10.0.3"
+"@octokit/webhooks@npm:^9.0.1":
+  version: 9.26.0
+  resolution: "@octokit/webhooks@npm:9.26.0"
   dependencies:
     "@octokit/request-error": ^2.0.2
     "@octokit/webhooks-methods": ^2.0.0
-    "@octokit/webhooks-types": 6.2.0
+    "@octokit/webhooks-types": 5.8.0
     aggregate-error: ^3.1.0
-  checksum: 037a7b5d4300ad465f5b1a6ce2a805707711789dd1a11ff1e937b8819a3d63e1d911b45782f8ceedf83542046f9811ce9c7ac53e01920609da2b9174bae99f32
+  checksum: 97da13d2464095d68068ff2fd7d2aa42d1c88e6271eb929ae50890396d16862debfa2078e650823bacf42c4a1c606137d3715a5f970bfcbc2bbdf66bca38760e
   languageName: node
   linkType: hard
 
@@ -485,6 +532,22 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 56738a918c543dba30786066959f801212e7fb5cd4ec53cf7b8d227711ed358834feb9e5141f7f88ec7c642bb39757330a5a8917e3b22e0ff9084940d35f0d70
+  languageName: node
+  linkType: hard
+
+"@types/lodash-es@npm:^4.17.6":
+  version: 4.17.6
+  resolution: "@types/lodash-es@npm:4.17.6"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: 9bd239dd525086e278821949ce12fbdd4f100a060fed9323fc7ad5661113e1641f28a7ebab617230ed3474680d8f4de705c1928b48252bb684be6ec9eed715db
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*":
+  version: 4.14.182
+  resolution: "@types/lodash@npm:4.14.182"
+  checksum: 7dd137aa9dbabd632408bd37009d984655164fa1ecc3f2b6eb94afe35bf0a5852cbab6183148d883e9c73a958b7fec9a9bcf7c8e45d41195add6a18c34958209
   languageName: node
   linkType: hard
 
@@ -804,6 +867,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bottleneck@npm:^2.15.3":
+  version: 2.19.5
+  resolution: "bottleneck@npm:2.19.5"
+  checksum: c5eef1bbea12cef1f1405e7306e7d24860568b0f7ac5eeab706a86762b3fc65ef6d1c641c8a166e4db90f412fc5c948fc5ce8008a8cd3d28c7212ef9c3482bda
+  languageName: node
+  linkType: hard
+
 "brace-expansion@npm:^1.1.7":
   version: 1.1.11
   resolution: "brace-expansion@npm:1.1.11"
@@ -1018,13 +1088,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "directcommit@workspace:."
   dependencies:
-    "@octokit/app": ^13.0.0
+    "@dtinth/encrypted": ^0.3.1
+    "@types/lodash-es": ^4.17.6
     "@types/node": 18.0.2
     "@types/react": 18.0.15
     "@types/react-dom": 18.0.6
     eslint: 8.19.0
     eslint-config-next: 12.2.0
+    lodash-es: ^4.17.21
     next: 12.2.0
+    octokit: ^1.8.1
+    p-memoize: ^7.1.0
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 4.7.4
@@ -1046,6 +1120,13 @@ __metadata:
   dependencies:
     esutils: ^2.0.2
   checksum: fd7673ca77fe26cd5cba38d816bc72d641f500f1f9b25b83e8ce28827fe2da7ad583a8da26ab6af85f834138cf8dae9f69b0cd6ab925f52ddab1754db44d99ce
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^8.2.0":
+  version: 8.6.0
+  resolution: "dotenv@npm:8.6.0"
+  checksum: 38e902c80b0666ab59e9310a3d24ed237029a7ce34d976796349765ac96b8d769f6df19090f1f471b77a25ca391971efde8a1ea63bb83111bd8bec8e5cc9b2cd
   languageName: node
   linkType: hard
 
@@ -2057,6 +2138,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash-es@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
+  languageName: node
+  linkType: hard
+
 "lodash.includes@npm:^4.3.0":
   version: 4.3.0
   resolution: "lodash.includes@npm:4.3.0"
@@ -2147,6 +2235,13 @@ __metadata:
     braces: ^3.0.2
     picomatch: ^2.3.1
   checksum: 02a17b671c06e8fefeeb6ef996119c1e597c942e632a21ef589154f23898c9c6a9858526246abb14f8bca6e77734aa9dcf65476fca47cedfb80d9577d52843fc
+  languageName: node
+  linkType: hard
+
+"mimic-fn@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "mimic-fn@npm:4.0.0"
+  checksum: 995dcece15ee29aa16e188de6633d43a3db4611bcf93620e7e62109ec41c79c0f34277165b8ce5e361205049766e371851264c21ac64ca35499acb5421c2ba56
   languageName: node
   linkType: hard
 
@@ -2362,6 +2457,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"octokit@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "octokit@npm:1.8.1"
+  dependencies:
+    "@octokit/app": ^12.0.4
+    "@octokit/core": ^3.5.1
+    "@octokit/oauth-app": ^3.5.1
+    "@octokit/plugin-paginate-rest": ^2.18.0
+    "@octokit/plugin-rest-endpoint-methods": ^5.14.0
+    "@octokit/plugin-retry": ^3.0.9
+    "@octokit/plugin-throttling": ^3.5.1
+    "@octokit/types": ^6.35.0
+  checksum: 0e99095f323b5664f146a5059e16e6cb81cf7f5c5731a437ce7a0c6d4fc8627e79bb23c7f6bfcfd319d9958bb449329439c15d8949e2fbf8c016491016894c35
+  languageName: node
+  linkType: hard
+
 "once@npm:^1.3.0, once@npm:^1.4.0":
   version: 1.4.0
   resolution: "once@npm:1.4.0"
@@ -2400,6 +2511,15 @@ __metadata:
   dependencies:
     p-limit: ^1.1.0
   checksum: e2dceb9b49b96d5513d90f715780f6f4972f46987dc32a0e18bc6c3fc74a1a5d73ec5f81b1398af5e58b99ea1ad03fd41e9181c01fa81b4af2833958696e3081
+  languageName: node
+  linkType: hard
+
+"p-memoize@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "p-memoize@npm:7.1.0"
+  dependencies:
+    mimic-fn: ^4.0.0
+  checksum: 41a9ffdedb8f4805fa4fbe16eb205ce95494f758d24ddb31126ed18baa5a0dd1fbdbd12b52a5f2053953bf94886f2035debe826855439ee1f936b7c1f9266f9b
   languageName: node
   linkType: hard
 
@@ -2919,6 +3039,13 @@ __metadata:
   peerDependencies:
     typescript: ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta"
   checksum: 1843f4c1b2e0f975e08c4c21caa4af4f7f65a12ac1b81b3b8489366826259323feb3fc7a243123453d2d1a02314205a7634e048d4a8009921da19f99755cdc48
+  languageName: node
+  linkType: hard
+
+"tweetnacl@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tweetnacl@npm:1.0.3"
+  checksum: e4a57cac188f0c53f24c7a33279e223618a2bfb5fea426231991652a13247bea06b081fd745d71291fcae0f4428d29beba1b984b1f1ce6f66b06a6d1ab90645c
   languageName: node
   linkType: hard
 
