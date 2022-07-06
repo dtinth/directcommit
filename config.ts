@@ -2,9 +2,31 @@ import Encrypted from '@dtinth/encrypted'
 import { App } from 'octokit'
 import { Config } from './src/types'
 
-const encrypted = Encrypted()
-const secrets = {
-  privateKey: encrypted`PkM8Yu0jR/Z/YQp7IeGLeH7xa38SeBL6.5JCXflUj2T5u02lRLGe+T3EK8x8ly
+export const config: Config = {
+  // Mountpoints are "projects" that can be used with directcommit.
+  // Feel free to add more mountpoints in your fork.
+  mountpoints: {
+    // The name of the mountpoint. The example mountpoint allows "dtinth" to
+    // edit the "README.md" file.
+    directcommit: {
+      app: new App({
+        appId: 217557,
+        privateKey: getPrivateKey(),
+      }),
+      installationId: 27146049,
+      owner: 'dtinth',
+      repo: 'directcommit',
+      firebaseProjectId: 'fiery-react',
+      async getPermissions(input) {
+        return input.path === 'README.md' && input.user.id === 193136
+      },
+    },
+  },
+}
+
+function getPrivateKey() {
+  const encrypted = Encrypted()
+  return encrypted`PkM8Yu0jR/Z/YQp7IeGLeH7xa38SeBL6.5JCXflUj2T5u02lRLGe+T3EK8x8ly
 7tpPVOS23FT8NaLtQVr96SrUPmr3siXtXi0vku9hIMQMNuoIDsBGJQI5kYygOwifhSqKj1ek
 dk9Xz8KL41TAJAjQLedlAP/Xui9f/0XgbZSpphrdxX+9/sN3vNIT0Pt/disJ2TTMzMfLxeEA
 VZ/iNt1SFHux37wZa5uzrfVuLDt8DzLHnKm4TGyUYtQpWSYJomWNRbuX9/tmuj7UqnKJu6id
@@ -36,25 +58,5 @@ RJyXeKMCTTpyZHgbxvDDe7fhtynXwE+T/uQgCboU79pTMucXAr8pDjfz2nAyYFb6d2awjKcy
 g2yua/p/0P1n7PjUjjulkUO9Y91GmOzMIrof0hNQ4Lt1WT5UTVWaW9wJmOFqg03tIz/jJI40
 GSDyd7+a44/EU3nIPCKASgOuGxnmLhK4pbB1vmsTfzI79kEtWN9YfLzsg6ItuPVa+Pugqfd8
 Wdz0jXPuXdg7qJU+WbQUocN7mufYv1wZdoanz3ZOjLD3jLBB/+NkfoT/MsrscvIRr4Qi67mp
-0YexlpCcbGhxHxImX211DSGTl6r3DNJfg==`,
-}
-
-export const app = new App({
-  appId: 217557,
-  privateKey: secrets.privateKey,
-})
-
-export const config: Config = {
-  mountpoints: {
-    directcommit: {
-      app,
-      installationId: 27146049,
-      owner: 'dtinth',
-      repo: 'directcommit',
-      firebaseProjectId: 'fiery-react',
-      async getPermissions(input) {
-        return input.path === 'README.md' && input.user.id === 193136
-      },
-    },
-  },
+0YexlpCcbGhxHxImX211DSGTl6r3DNJfg==`
 }
