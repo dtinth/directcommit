@@ -47,3 +47,7 @@ This Firebase app will be used to provide authentication layer to the frontend.
 1. Create a Firebase project
 2. [Under **Auth**, enable the **GitHub provider**](https://firebase.google.com/docs/auth/web/github-auth)
 3. Integrate Firebase Authentication with your web application
+
+### Integrate with frontend
+
+See [example frontend](https://github.com/dtinth/directcommit-example/blob/main/public/index.html)
