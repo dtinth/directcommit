@@ -1,4 +1,4 @@
-import type { App } from 'octokit'
+import type { App, Octokit } from 'octokit'
 
 export interface Config {
   mountpoints: Record<string, MountpointConfig>
@@ -39,6 +39,10 @@ export interface MountpointConfig {
   getPermissions(input: GetPermissionsInput): Promise<GetPermissionsOutput>
 }
 
+export type Content = Awaited<
+  ReturnType<Octokit['rest']['repos']['getContent']>
+>['data'] & { sha: string }
+
 export interface GetPermissionsInput {
   /**
    * The path of the file being accessed.
@@ -54,6 +58,12 @@ export interface GetPermissionsInput {
    * Returns an Octokit instance with the correct access token for the installation.
    */
   getInstallation: () => ReturnType<App['getInstallationOctokit']>
+
+  /**
+   * The function that will be used to determine whether the user has
+   * permission to view or edit the file.
+   */
+  getContent(): Promise<Content>
 }
 
 export type GetPermissionsOutput =

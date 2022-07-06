@@ -1,13 +1,18 @@
+import Cors from 'cors'
+import { initMiddleware } from 'init-middleware'
 import { get, has } from 'lodash-es'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { config } from '../../../../../config'
 import pMemoize from 'p-memoize'
 import { verifyIdToken } from '../../../../../src/auth'
 
+const cors = initMiddleware(Cors())
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  await cors(req, res)
   try {
     const mountpoints = config.mountpoints
     const mountpointName = String(req.query.mountpoint)
@@ -50,17 +55,30 @@ export default async function handler(
     })
     const permission = await mountpoint.getPermissions({
       getInstallation,
+      getContent,
       path,
       user: { id },
     })
+    const canRead =
+      permission === true || (permission !== false && permission.read)
+    const canWrite =
+      permission === true || (permission !== false && permission.write)
     if (req.method === 'GET') {
-      if (permission === false || (permission !== true && !permission.read)) {
+      if (!canRead) {
         res.status(403).json({ error: 'Forbidden' })
         return
       }
-      res.status(200).json(await getContent())
+      res.status(200).json({
+        ...(await getContent()),
+        directcommit: {
+          permissions: {
+            read: canRead,
+            write: canWrite,
+          },
+        },
+      })
     } else if (req.method === 'PUT') {
-      if (permission === false || (permission !== true && !permission.write)) {
+      if (!canWrite) {
         res.status(403).json({ error: 'Forbidden' })
         return
       }
