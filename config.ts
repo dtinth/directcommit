@@ -51,8 +51,9 @@ export const config: Config = {
       installationId: 27146049,
       owner: 'dtinth',
       repo: 'directcommit',
+      firebaseProjectId: 'fiery-react',
       async getPermissions(input) {
-        return input.path === 'README.md' // && input.user.id === 193136
+        return input.path === 'README.md' && input.user.id === 193136
       },
     },
   },

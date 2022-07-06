@@ -1,12 +1,13 @@
 import type { App } from 'octokit'
 
 export interface Config {
-  mountpoints: Record<string, Mountpoint>
+  mountpoints: Record<string, MountpointConfig>
 }
 
-export interface Mountpoint {
+export interface MountpointConfig {
   app: App
   installationId: number
+  firebaseProjectId: string
   owner: string
   repo: string
   getPermissions: (input: GetPermissionsInput) => Promise<GetPermissionsOutput>

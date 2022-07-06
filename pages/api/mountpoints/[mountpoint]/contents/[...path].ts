@@ -2,6 +2,7 @@ import { get, has } from 'lodash-es'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { config } from '../../../../../config'
 import pMemoize from 'p-memoize'
+import { verifyIdToken } from '../../../../../src/auth'
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,6 +17,18 @@ export default async function handler(
       return
     }
     const mountpoint = get(mountpoints, mountpointName)
+
+    const idToken = (req.headers.authorization || '').split(' ')[1]
+    if (!idToken) {
+      res.status(401).json({ error: 'No id token' })
+      return
+    }
+    const result = await verifyIdToken(mountpoint.firebaseProjectId, idToken)
+    const id = +get(result.payload, ['firebase', 'identities', 'github.com', 0])
+    if (!id) {
+      res.status(401).json({ error: 'No user id found in id token' })
+      return
+    }
 
     const getInstallation = pMemoize(async () => {
       return await mountpoint.app.getInstallationOctokit(
@@ -38,7 +51,7 @@ export default async function handler(
     const permission = await mountpoint.getPermissions({
       getInstallation,
       path,
-      user: { id: 0 },
+      user: { id },
     })
     if (req.method === 'GET') {
       if (permission === false || (permission !== true && !permission.read)) {
@@ -51,7 +64,20 @@ export default async function handler(
         res.status(403).json({ error: 'Forbidden' })
         return
       }
-      throw new Error('Unimplemented')
+      const installation = await getInstallation()
+      const response = await installation.rest.repos.createOrUpdateFileContents(
+        {
+          owner: mountpoint.owner,
+          repo: mountpoint.repo,
+          path,
+          message:
+            String(req.body.message) +
+            `\n\n\nCo-authored-by: User <${id}+username@users.noreply.github.com>`,
+          content: String(req.body.content),
+          sha: String(req.body.sha),
+        },
+      )
+      res.status(200).json(response.data)
     } else {
       res.status(405).json({ error: 'Method not allowed' })
     }
