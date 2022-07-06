@@ -18,7 +18,13 @@ export const config: Config = {
       repo: 'directcommit',
       firebaseProjectId: 'fiery-react',
       async getPermissions(input) {
-        return input.path === 'README.md' && input.user.id === 193136
+        if (input.path === 'README.md') {
+          return {
+            read: true,
+            write: input.user.id === 193136,
+          }
+        }
+        return false
       },
     },
   },
