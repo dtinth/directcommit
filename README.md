@@ -22,6 +22,8 @@ This project provides an API for end users to make changes to files in a reposit
 
 ### Create a GitHub App
 
+This GitHub App will be used to access the repository contents.
+
 1. Create a GitHub App
    - Uncheck **Webhook** &rarr; **Active**
    - Permissions:
@@ -29,3 +31,19 @@ This project provides an API for end users to make changes to files in a reposit
 2. Note the **App ID**
 3. Generate and download the private key
 4. Go to **Install App** and install it on the repository.
+
+### Create a GitHub OAuth app
+
+This GitHub OAuth app will be used to authenticate end users.
+
+1. Create an OAuth application
+2. Note the **Client ID**
+3. Generate and note the **Client Secret**
+
+### Create a Firebase project
+
+This Firebase app will be used to provide authentication layer to the frontend.
+
+1. Create a Firebase project
+2. [Under **Auth**, enable the **GitHub provider**](https://firebase.google.com/docs/auth/web/github-auth)
+3. Integrate Firebase Authentication with your web application
