@@ -1,6 +1,6 @@
 # directcommit
 
-Convenient API layer that allows end users to make changes to files in a repository without having to go through the pull request workflow. Useful for wikis.
+Convenient API layer that allows end users to make changes to files in a repository without having to go through the pull request workflow. Useful for building wikis.
 
 ## Background
 
@@ -53,4 +53,4 @@ This Firebase app will be used to provide authentication layer to the frontend.
 1. Let user [log in using their GitHub account](https://firebase.google.com/docs/auth/web/github-auth).
 2. Obtain the ID token by calling the [`getIdToken` method](https://firebase.google.com/docs/reference/js/auth.user#usergetidtoken) on [the `auth.currentUser` object](https://firebase.google.com/docs/reference/js/auth.auth.md#authcurrentuser).
 
-See [example](https://github.com/dtinth/directcommit-example/blob/main/public/index.html).
+See [example](https://github.com/dtinth/directcommit-example/blob/main/public/index.html) ([deployed](https://directcommit.web.app/)).
