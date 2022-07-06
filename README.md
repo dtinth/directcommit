@@ -29,5 +29,3 @@ This project provides an API for end users to make changes to files in a reposit
 2. Note the **App ID**
 3. Generate and download the private key
 4. Go to **Install App** and install it on the repository.
-
-it works
