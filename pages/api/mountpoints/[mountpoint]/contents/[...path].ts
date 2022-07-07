@@ -24,15 +24,20 @@ export default async function handler(
     const mountpoint = get(mountpoints, mountpointName)
 
     const idToken = (req.headers.authorization || '').split(' ')[1]
-    if (!idToken) {
-      res.status(401).json({ error: 'No id token' })
-      return
-    }
-    const result = await verifyIdToken(mountpoint.firebaseProjectId, idToken)
-    const id = +get(result.payload, ['firebase', 'identities', 'github.com', 0])
-    if (!id) {
-      res.status(401).json({ error: 'No user id found in id token' })
-      return
+    let userId: number | undefined
+    if (idToken) {
+      const result = await verifyIdToken(mountpoint.firebaseProjectId, idToken)
+      const id = +get(result.payload, [
+        'firebase',
+        'identities',
+        'github.com',
+        0,
+      ])
+      if (!id) {
+        res.status(401).json({ error: 'No user id found in id token' })
+        return
+      }
+      userId = id
     }
 
     const getInstallation = pMemoize(async () => {
@@ -57,7 +62,7 @@ export default async function handler(
       getInstallation,
       getContent,
       path,
-      user: { id },
+      user: userId ? { id: userId } : undefined,
     })
     const canRead =
       permission === true || (permission !== false && permission.read)
@@ -90,7 +95,9 @@ export default async function handler(
           path,
           message:
             String(req.body.message) +
-            `\n\n\nCo-authored-by: User <${id}+username@users.noreply.github.com>`,
+            (userId
+              ? `\n\n\nCo-authored-by: User <${userId}+username@users.noreply.github.com>`
+              : ''),
           content: String(req.body.content),
           sha: String(req.body.sha),
         },

@@ -52,12 +52,12 @@ export interface GetPermissionsInput {
   /**
    * The authenticated user information.
    */
-  user: { id: number }
+  user?: { id: number }
 
   /**
    * Returns an Octokit instance with the correct access token for the installation.
    */
-  getInstallation: () => ReturnType<App['getInstallationOctokit']>
+  getInstallation: () => Promise<App['octokit']>
 
   /**
    * The function that will be used to determine whether the user has

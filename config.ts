@@ -1,6 +1,9 @@
 import Encrypted from '@dtinth/encrypted'
 import { App } from 'octokit'
+import { AsyncCache } from './src/AsyncCache'
 import { Config } from './src/types'
+
+const creatorsgartenMembersCache = new AsyncCache<Set<number>>()
 
 export const config: Config = {
   // Mountpoints are "projects" that can be used with directcommit.
@@ -11,7 +14,7 @@ export const config: Config = {
     directcommit: {
       app: new App({
         appId: 217557,
-        privateKey: getPrivateKey(),
+        privateKey: getDirectcommitPrivateKey(),
       }),
       installationId: 27146049,
       owner: 'dtinth',
@@ -20,17 +23,46 @@ export const config: Config = {
       async getPermissions(input) {
         if (input.path === 'README.md') {
           return {
-            read: true,
-            write: input.user.id === 193136,
+            read: !!input.user,
+            write: input.user?.id === 193136,
           }
         }
         return false
       },
     },
+
+    'creatorsgarten-wiki': {
+      app: new App({
+        appId: 217557,
+        privateKey: getDirectcommitPrivateKey(),
+      }),
+      installationId: 27196030,
+      owner: 'creatorsgarten',
+      repo: 'wiki',
+      firebaseProjectId: 'creatorsgarten-wiki',
+      async getPermissions(input) {
+        const installation = await input.getInstallation()
+        const members = await creatorsgartenMembersCache.getCachedOrCompute(
+          async () => {
+            console.log('Fetch')
+            const response = await installation.rest.teams.listMembersInOrg({
+              org: 'creatorsgarten',
+              team_slug: 'creators',
+              per_page: 100,
+            })
+            return new Set(response.data.map((member) => member.id))
+          },
+        )
+        return {
+          read: true,
+          write: !!input.user && members.has(input.user.id),
+        }
+      },
+    },
   },
 }
 
-function getPrivateKey() {
+function getDirectcommitPrivateKey() {
   const encrypted = Encrypted()
   return encrypted`PkM8Yu0jR/Z/YQp7IeGLeH7xa38SeBL6.5JCXflUj2T5u02lRLGe+T3EK8x8ly
 7tpPVOS23FT8NaLtQVr96SrUPmr3siXtXi0vku9hIMQMNuoIDsBGJQI5kYygOwifhSqKj1ek

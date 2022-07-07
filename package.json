@@ -12,6 +12,7 @@
     "@dtinth/encrypted": "^0.3.1",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
+    "expiry-map": "^2.0.0",
     "init-middleware": "^0.0.1",
     "jose": "^4.8.3",
     "lodash-es": "^4.17.21",
@@ -19,7 +20,8 @@
     "octokit": "^1.8.1",
     "p-memoize": "^7.1.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "request-ip": "^3.3.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -27,6 +29,7 @@
     "@types/node": "18.0.2",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
+    "@types/request-ip": "^0.0.37",
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.0",
     "typescript": "4.7.4"
