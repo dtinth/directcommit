@@ -107,7 +107,25 @@ export default async function handler(
       res.status(405).json({ error: 'Method not allowed' })
     }
   } catch (error) {
+    if (isApiError(error)) {
+      if (error.status >= 500) {
+        console.error(error)
+      }
+      res.status(error.status).json(error.response.data)
+      return
+    }
     console.error(error)
     res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
+function isApiError(e: unknown): e is ApiError {
+  return 'status' in (e as object) && 'response' in (e as object)
+}
+
+interface ApiError {
+  status: number
+  response: {
+    data: any
   }
 }
