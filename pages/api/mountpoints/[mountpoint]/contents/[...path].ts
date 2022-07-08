@@ -13,6 +13,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   await cors(req, res)
+  let extraData: Record<string, unknown> = {}
   try {
     const mountpoints = config.mountpoints
     const mountpointName = String(req.query.mountpoint)
@@ -68,6 +69,10 @@ export default async function handler(
       permission === true || (permission !== false && permission.read)
     const canWrite =
       permission === true || (permission !== false && permission.write)
+    extraData.permissions = {
+      read: canRead,
+      write: canWrite,
+    }
     if (req.method === 'GET') {
       if (!canRead) {
         res.status(403).json({ error: 'Forbidden' })
@@ -75,12 +80,7 @@ export default async function handler(
       }
       res.status(200).json({
         ...(await getContent()),
-        directcommit: {
-          permissions: {
-            read: canRead,
-            write: canWrite,
-          },
-        },
+        directcommit: { extraData },
       })
     } else if (req.method === 'PUT') {
       if (!canWrite) {
@@ -102,7 +102,10 @@ export default async function handler(
           sha: String(req.body.sha),
         },
       )
-      res.status(200).json(response.data)
+      res.status(200).json({
+        ...response.data,
+        directcommit: { extraData },
+      })
     } else {
       res.status(405).json({ error: 'Method not allowed' })
     }
@@ -111,7 +114,10 @@ export default async function handler(
       if (error.status >= 500) {
         console.error(error)
       }
-      res.status(error.status).json(error.response.data)
+      res.status(error.status).json({
+        ...error.response.data,
+        directcommit: { extraData },
+      })
       return
     }
     console.error(error)
