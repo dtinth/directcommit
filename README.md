@@ -4,7 +4,7 @@ Convenient API layer that allows end users to make changes to files in a reposit
 
 ## Background
 
-It is common for a website to have an “Edit this page on GitHub” button. However, there are a few problems:
+It is common for a website to have an “Edit this page on GitHub” button, but this UX has some friction:
 
 1. **For external contributors,** the user has to go through the pull request workflow (fork the repository, make changes, commit, push, submit a pull request). This introduces a lot of friction and complexity for the user.
 
